@@ -10,29 +10,13 @@
     <link rel="shortcut icon" href="img/icon.png">
     <title>Фитнес-клуб</title>  
 </head>
-<header>
-   <div class="header">
-       <div class="header_section">
-           <div class="header_item headerlogo">
-               Фитнес-клуб
-           </div>
-           <div class="header_item headerButton"><a href="#">Услуги</a></div>
-           <div class="header_item headerButton"><a href="#">Тренеры</a></div>
-           <div class="header_item headerButton"><a href="#">Расписание</a></div>
-       </div>
-       <div class="header_section">
-       <div class="header_item headerButton"><a href="#">Войти</a></div>
-       <div class="header_item headerButton"><a href="#">Зарегистрироваться</a></div>
-       </div>
-   </div>
-</header>
+<?php require "header.php"?>
+<?php require "footer.php"?>
 
 <body> 
 
 </body>
 
-<footer>
 
-</footer>
                                                           
 </html>
