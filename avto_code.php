@@ -16,17 +16,25 @@
 
     
 
-    $query = "SELECT * FROM `список клиентов` WHERE `Логин` = '$login' AND  `Пароль` = '$password'";
-    $result=mysqli_query($conn,$query);
-    $user=mysqli_fetch_assoc($result);
+    $query1 = "SELECT * FROM `список клиентов` WHERE `Логин` = '$login' AND  `Пароль` = '$password'";
+    $query2 = "SELECT * FROM `сотрудники` WHERE `Логин` = '$login' AND  `Пароль` = '$password'";
 
-    if(count($user)== 0){
-        echo "Такой пользователь не найден!";
-        exit();
+    $result1=mysqli_query($conn,$query1);
+    $user1=mysqli_fetch_assoc($result1);
+
+    $result2=mysqli_query($conn,$query2);
+    $user2=mysqli_fetch_assoc($result2);
+
+    if(count($user1) != 0 ){
+        setcookie('user', $user1['Имя'], time() + 3600, "/");
+        header('Location: index.php');
     }
-
-    setcookie('user', $user['Имя'], time() + 3600, "/");
-    
+    else if(count($user2) != 0){
+        setcookie('user', $user2['Имя'], time() + 3600, "/");
+        header('Location: index.php');
+    }
+    else{
+        echo"Такой пользователь не существует!";
+    }
     mysqli_close( $conn );
-    header('Location: avto.php');
 ?>
