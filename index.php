@@ -10,12 +10,24 @@
     <link rel="shortcut icon" href="img/icon.png">
     <title>Фитнес-клуб</title>  
 </head>
-<?php require "header.php"?>
-<?php require "footer.php"?>
+
 
 <body> 
+    
+    <?php require "header.php"?>
+    <div class="content">
+    <?php
+    if($_COOKIE['user'] == ''):
+    ?> 
+        ТО, ЧТО ВИДИТ ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ :))))));
+<?php else: ?>                                      
+    <?php require "helloy.php"?>
+<?php endif; ?>
+</div>
+<?php require "footer.php"?>
 
 </body>
+
 
 
                                                           
