@@ -20,13 +20,18 @@
 <center>
 <h3>Вход</h3>
 <form action="avto_code.php" method="post">
-<input type="text" name="login" id="login" placeholder="*Введите логин"><br>
-<input type="text" name="password" id="password" placeholder="*Введите пароль"><br>
-<button type="submit">Авторизоваться</button>
+<div class="form">
+<input class="register_important" type="text" name="login" id="login" placeholder="Введите логин"><br>
+<input class="register_important" type="text" name="password" id="password" placeholder="Введите пароль"><br>
+</div>
+<button type="submit">Авторизоваться</button><br>
+<p class="text_no_account">У вас нет аккаунта?<br>
+Зарегистрируйтесь <a class="link-output" href="register.php" ><font size="4" style="color: rgb(214, 12, 12);">здесь</font></a>!</p>
+<p class="forget_password" ><a class="link-output" href="recover_password.php" ><font size="3" style="color: rgb(214, 12, 12);">Забыли пароль?</font></a></p>
 </form>
 </center>
-<?php else: ?>
-    <center><p>Здравствуйте, <?=$_COOKIE['user']?>. Чтобы выйти нажмите <a href="exit.php">здесь</a>.</p></center>
+<?php else: ?>                                      
+<?php require "helloy.php"?>
 <?php endif; ?>
 </body>
 
