@@ -6,7 +6,7 @@
     $login= filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
     $password= filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);
 
-    if(mb_strlen($surname) < 1 && mb_strlen($name)<1 && mb_strlen($login)<1 && mb_strlen($password)<1){
+    if(mb_strlen($surname) < 1 || mb_strlen($name)<1 || mb_strlen($login)<1 || mb_strlen($password)<1){
         echo "Введите обязательные данные!";
         exit();
     } else if(mb_strlen($password)<8){
@@ -31,9 +31,25 @@
     if (!$conn) {
         die("Подключение не удалось: " . mysqli_connect_error());
      }
+    
+
+    $sql1 = "SELECT * FROM `список клиентов` WHERE `Логин` = '$login'";
+    $sql2 = "SELECT * FROM `список клиентов` WHERE `Пароль` = '$password'";
+    $result1=mysqli_query($conn,$sql1);
+    $result2=mysqli_query($conn,$sql2);
+    $user1=mysqli_fetch_assoc($result1);
+    $user2=mysqli_fetch_assoc($result2);
+
+    if(count($user1) != 0){
+        echo "Такой логин уже существует!";
+        exit();
+    }else if(count($user2) != 0){
+        echo "Такой пароль уже существует!";
+        exit();
+    }else{
     $sql="INSERT INTO `список клиентов` (`Фамилия`, `Имя`, `Отчество`, `Номер телефона`, `Логин`, `Пароль`)
     VALUES ('$surname', '$name', '$patronymic', '$number_phone', '$login', '$password')";
-    
+
     if (mysqli_query($conn, $sql)) {
         header('Location: index.php');
      } else {
@@ -42,5 +58,5 @@
     
     mysqli_close( $conn );
     header('Location: index.php');
-    
+    }
 ?>
