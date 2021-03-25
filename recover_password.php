@@ -14,9 +14,7 @@
 
 
 <body>
-    <?php
-    if($_COOKIE['user'] == ''):
-    ?> 
+  
 <center>
 <h3>Восстановление пароля</h3>
 <form action="recover_password_code.php" method="post">
@@ -27,7 +25,7 @@
 <button type="submit">Отправить</button><br>
 </center>
 
-<?php endif; ?>
+
 </body>
 
 <?php require "footer.php"?>
