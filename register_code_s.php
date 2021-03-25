@@ -20,15 +20,10 @@
         echo "Длина номера телефона - 11 символов! Длина остальных данных не больше 45 символов!";
         exit();
     }
+    
     $password = md5($password."kailnicshaeava");
-
-    $servername = "localhost";
-    $database = "фитнес-клуб";
-    $username = "root";
-    $pass = "alisa1983";
-
-    // Создаем соединение
-    $conn = mysqli_connect($servername, $username, $pass, $database);
+    require "connect_db.php";
+    
     if (!$conn) {
         die("Подключение не удалось: " . mysqli_connect_error());
      }
