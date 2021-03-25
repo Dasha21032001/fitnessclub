@@ -15,16 +15,41 @@
 <body> 
     
     <?php require "header.php"?>
-    <div class="content">
+    
+<div class="content">
     <?php
-    if($_COOKIE['user'] == ''):
-    ?> 
-        ТО, ЧТО ВИДИТ ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ в услугах :))))));
-<?php else: ?>                                      
-    <?php require "helloy.php"?>
-<?php endif; ?>
+    session_start();
+    
+   
+    if(empty($_SESSION["klient_id"])):
+        ?> 
+            ТО, ЧТО ВИДИТ ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ в услугах :))))));
+            
+        <?php else: ?>                                      
+            <?php require "helloy.php"?>
+    
+            <?php
+            if(empty($_SESSION["klient_id"])){
+                echo("Не залогинен");
+            }
+            else if(($_SESSION["employee"]) && ($_SESSION["code_d"] == 1)){
+                //echo("Админ ");
+                require "services_admin.php";
+            }
+            else if($_SESSION["employee"]){
+                echo("Сотрудник ");
+            }
+            else{
+                require "services_full.php";
+                //echo("Клиент ");
+            }
+            //echo("code:".$_SESSION["code_d"]);
+            //echo("CID:".!empty($_SESSION["code_d"]).":".$_SESSION["code_d"]);
+            ?> 
+    
+    <?php endif; ?>
 </div>
-<?php require "footer.php"?>
+    <?php require "footer.php"?>
 
 </body>
 
