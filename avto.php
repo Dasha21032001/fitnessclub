@@ -14,9 +14,12 @@
 
 
 <body>
-    <?php
-    if($_COOKIE['user'] == ''):
-    ?> 
+<?php
+    session_start();
+    
+   
+    if(empty($_SESSION["klient_id"])):
+        ?> 
 <center>
 <h3>Вход</h3>
 <form action="avto_code.php" method="post">
@@ -30,7 +33,8 @@
 <p class="forget_password" ><a class="link-output" href="recover_password.php" ><font size="3" style="color: rgb(214, 12, 12);">Забыли пароль?</font></a></p>
 </form>
 </center>
-<?php else: ?>                                      
+<?php else: ?> 
+                                         
 <?php require "helloy.php"?>
 <?php endif; ?>
 </body>
