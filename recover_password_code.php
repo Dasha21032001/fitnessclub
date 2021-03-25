@@ -12,20 +12,25 @@
     
     $new_password = md5($new_password."kailnicshaeava");
 
-    $servername = "localhost";
-    $database = "фитнес-клуб";
-    $username = "root";
-    $pass = "alisa1983";
-
-    // Создаем соединение
-    $conn = mysqli_connect($servername, $username, $pass, $database);
+    require "connect_db.php";
 
     $sql = "UPDATE `список клиентов` SET Пароль='$new_password' WHERE Логин='$login'";
+    $sql1 = "UPDATE `сотрудники` SET Пароль='$new_password' WHERE Логин='$login'";
 
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, $sql1)) {
         header('Location: avto.php');
-        exit;
-     } else {
+        
+     } 
+     else {
+        echo "Ошибка: " . $sql1 . "<br>" . mysqli_error($conn);
+      }
+
+
+     if(mysqli_query($conn, $sql)){
+        header('Location: avto.php');
+        
+      }
+     else {
        echo "Ошибка: " . $sql . "<br>" . mysqli_error($conn);
      }
     
